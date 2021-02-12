@@ -9,6 +9,6 @@ ReactDOM.render(
     <React.StrictMode>
       <App />
     </React.StrictMode>
-    , document.getElementById("root")
-  </Provider>
+  </Provider>,
+  document.getElementById("root")
 );
