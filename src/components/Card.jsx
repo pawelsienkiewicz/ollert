@@ -12,6 +12,5 @@ export const StyledCard = styled.div`
 
 const Card = ({ text }) => {
   return <StyledCard>{text}</StyledCard>;
-};
 
 export default Card;
