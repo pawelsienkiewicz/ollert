@@ -6,14 +6,16 @@ const StyledList = styled.div`
   background: grey;
   border-radius: 3px;
   width: 300px;
-  padding: 8px 8px;
+  padding: 5px;
 `;
 
-const List = ({ title }) => {
+const List = ({ title, cards }) => {
   return (
     <StyledList>
-      {title}
-      <Card />
+      <div>{title}</div>
+      {cards.map((card) => (
+        <Card text={card.text} key={card.id} />
+      ))}
     </StyledList>
   );
 };
