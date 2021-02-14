@@ -10,7 +10,7 @@ class App extends React.Component {
       <div className="container-fluid">
         <div className="row">
           {lists.map((list) => (
-            <div class="col-sm">
+            <div className="col-3">
               <List title={list.title} cards={list.cards} key={list.id} />
             </div>
           ))}

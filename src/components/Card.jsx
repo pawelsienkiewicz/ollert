@@ -4,13 +4,14 @@ import styled from "styled-components";
 export const StyledCard = styled.div`
   background: white;
   border-radius: 3px;
-  margin: 5px;
+  margin: 6px;
   width: auto;
-  height: 50px;
-  padding: 5px;
+  height: auto;
+  padding: 6px;
 `;
 
 const Card = ({ text }) => {
   return <StyledCard>{text}</StyledCard>;
+};
 
 export default Card;

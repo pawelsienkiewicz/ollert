@@ -1,21 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 import Card from "../components/Card";
+import ListFooter from "../components/ListFooter";
 
 const StyledList = styled.div`
-  background: grey;
+  background: rgb(214, 214, 214);
   border-radius: 3px;
-  width: 300px;
-  padding: 5px;
+  width: auto;
+  padding: 6px;
 `;
 
 const List = ({ title, cards }) => {
   return (
     <StyledList>
-      <div>{title}</div>
+      {title}
       {cards.map((card) => (
         <Card text={card.text} key={card.id} />
       ))}
+      <ListFooter/>
     </StyledList>
   );
 };
