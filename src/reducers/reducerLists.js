@@ -31,10 +31,25 @@ const reducerLists = (state = initState, action) => {
     case ROOTACTIONS.ADD_LIST:
       const newList = {
         title: action.payload,
-        card: [],
-        id: Math.random(),
+        id: 15,
+        cards: [],
       };
       return [...state, newList];
+
+    case ROOTACTIONS.ADD_CARD:
+      const newCardInList = {
+        text: action.payload.text,
+        id: Math.random(),
+      };
+      const newState = state.filter((list) => {
+        if (list.id === action.payload.idList) {
+          return {
+            ...list,
+            cards: [...list.cards, newCardInList],
+          };
+        }
+      });
+      return newState;
     default:
       return state;
   }

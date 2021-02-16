@@ -5,6 +5,7 @@ import Card from "./Card";
 import Textarea from "react-textarea-autosize";
 import { connect } from "react-redux";
 import { addList } from "../actions/listAction";
+import { addCard } from "../actions/cardAction";
 
 const StyledListFooter = styled.div`
   background: inherit;
@@ -39,13 +40,23 @@ class AddButton extends React.Component {
   };
 
   hadleAddList = () => {
-    const { dispatch } = this.props;
+    const { dispatch, idList } = this.props;
     const { text } = this.state;
     if (text) {
-      dispatch(addList(text));
+      dispatch(addList(text, idList));
     }
     return;
   };
+
+  handleAddCard = () => {
+    const { dispatch, idList } = this.props;
+    const { text } = this.state;
+
+    if (text) {
+      dispatch(addCard(idList, text));
+    }
+  };
+
   renderAddButton = () => {
     const { isList } = this.props;
     return (
@@ -85,9 +96,11 @@ class AddButton extends React.Component {
             />
           }
         ></Card>
-        <button onMouseDown={this.hadleAddList}>
-          Dodaj  
-        </button>
+        {isList ? (
+          <button onMouseDown={this.hadleAddList}>Dodaj</button>
+        ) : (
+          <button onMouseDown={this.hadleAddCard}></button>
+        )}
       </div>
     );
   };

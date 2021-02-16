@@ -10,14 +10,14 @@ const StyledList = styled.div`
   padding: 6px;
 `;
 
-const List = ({ title, cards }) => {
+const List = ({ title, cards, idList }) => {
   return (
     <StyledList>
       {title}
       {cards.map((card) => (
         <Card text={card.text} key={card.id} />
       ))}
-      <AddButton/>
+      <AddButton idList={idList} />
     </StyledList>
   );
 };

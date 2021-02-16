@@ -12,7 +12,12 @@ class App extends React.Component {
         <div className="row">
           {lists.map((list) => (
             <div className="col">
-              <List title={list.title} cards={list.cards} key={list.id} />
+              <List
+                title={list.title}
+                cards={list.cards}
+                key={list.id}
+                idList={list.id}
+              />
             </div>
           ))}
           <AddButton isList />
