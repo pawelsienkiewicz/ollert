@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { PlusCircle } from "react-bootstrap-icons";
-import Card from "../components/Card";
+import Card from "./Card";
 import Textarea from "react-textarea-autosize";
+import { connect } from "react-redux";
+import { addList } from "../actions/listAction";
 
 const StyledListFooter = styled.div`
   background: inherit;
@@ -16,7 +18,7 @@ const StyledListFooter = styled.div`
   opacity: 0.75;
 `;
 
-class ListFooter extends React.Component {
+class AddButton extends React.Component {
   state = {
     isOpen: false,
     text: "",
@@ -30,7 +32,21 @@ class ListFooter extends React.Component {
     this.setState({ isOpen: false });
   };
 
-  addButton = () => {
+  handleInput = (event) => {
+    this.setState({
+      text: event.target.value,
+    });
+  };
+
+  hadleAddList = () => {
+    const { dispatch } = this.props;
+    const { text } = this.state;
+    if (text) {
+      dispatch(addList(text));
+    }
+    return;
+  };
+  renderAddButton = () => {
     const { isList } = this.props;
     return (
       <StyledListFooter onClick={this.openForm}>
@@ -49,13 +65,7 @@ class ListFooter extends React.Component {
     );
   };
 
-  handleInput = (event) => {
-    this.setState({
-      text: event.targ,
-    });
-  };
-
-  addForm = () => {
+  renderAddForm = () => {
     const { isList } = this.props;
     const placeholderTitle = isList
       ? "Enter a list title"
@@ -75,13 +85,16 @@ class ListFooter extends React.Component {
             />
           }
         ></Card>
+        <button onMouseDown={this.hadleAddList}>
+          Dodaj  
+        </button>
       </div>
     );
   };
 
   render() {
-    return this.state.isOpen ? this.addForm() : this.addButton();
+    return this.state.isOpen ? this.renderAddForm() : this.renderAddButton();
   }
 }
 
-export default ListFooter;
+export default connect()(AddButton);

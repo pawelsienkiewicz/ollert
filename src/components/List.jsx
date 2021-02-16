@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Card from "../components/Card";
-import ListFooter from "../components/ListFooter";
+import AddButton from "./AddButton";
 
 const StyledList = styled.div`
   background: rgb(214, 214, 214);
@@ -17,7 +17,7 @@ const List = ({ title, cards }) => {
       {cards.map((card) => (
         <Card text={card.text} key={card.id} />
       ))}
-      <ListFooter/>
+      <AddButton/>
     </StyledList>
   );
 };

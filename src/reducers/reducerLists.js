@@ -1,3 +1,4 @@
+import ROOTACTIONS from "../actions/index";
 const initState = [
   {
     title: "This is sample list",
@@ -27,6 +28,13 @@ const initState = [
 
 const reducerLists = (state = initState, action) => {
   switch (action.type) {
+    case ROOTACTIONS.ADD_LIST:
+      const newList = {
+        title: action.payload,
+        card: [],
+        id: Math.random(),
+      };
+      return [...state, newList];
     default:
       return state;
   }
