@@ -1,5 +1,6 @@
 import React from "react";
 import List from "../components/List";
+import AddButton from "../components/AddButton";
 
 import { connect } from "react-redux";
 
@@ -10,10 +11,16 @@ class App extends React.Component {
       <div className="container-fluid">
         <div className="row">
           {lists.map((list) => (
-            <div class="col-sm">
-              <List title={list.title} cards={list.cards} key={list.id} />
+            <div className="col">
+              <List
+                title={list.title}
+                cards={list.cards}
+                key={list.id}
+                idList={list.id}
+              />
             </div>
           ))}
+          <AddButton isList />
         </div>
       </div>
     );

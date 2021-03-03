@@ -1,3 +1,7 @@
+import ROOTACTIONS from "../actions/index";
+
+var lastId = 10;
+
 const initState = [
   {
     title: "This is sample list",
@@ -27,6 +31,32 @@ const initState = [
 
 const reducerLists = (state = initState, action) => {
   switch (action.type) {
+    case ROOTACTIONS.ADD_LIST:
+      const newList = {
+        title: action.payload,
+        id: lastId,
+        cards: [],
+      };
+      lastId++;
+      return [...state, newList];
+
+    case ROOTACTIONS.ADD_CARD:
+      const newCardInList = {
+        id: lastId,
+        text: action.payload.text,
+      };
+
+      const newState = state.map((list) => {
+        if (list.id === action.payload.idList) {
+          return {
+            ...list,
+            cards: [...list.cards, newCardInList],
+          };
+        } else {
+          return list;
+        }
+      });
+      return newState;
     default:
       return state;
   }
