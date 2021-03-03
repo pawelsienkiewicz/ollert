@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Card from "../components/Card";
 import AddButton from "./AddButton";
+import { Droppable } from "react-beautiful-dnd";
 
 const StyledList = styled.div`
   background: rgb(214, 214, 214);
@@ -12,13 +13,20 @@ const StyledList = styled.div`
 
 const List = ({ title, cards, idList }) => {
   return (
-    <StyledList>
-      {title}
-      {cards.map((card) => (
-        <Card text={card.text} key={card.id} />
-      ))}
-      <AddButton idList={idList} />
-    </StyledList>
+    <Droppable droppableId={String(idList)}>
+      {(provided) => (
+        <div {...provided.droppableProps} ref={provided.innerRef}>
+          <StyledList>
+            {title}
+            {cards.map((card, index) => (
+              <Card text={card.text} key={card.id} id={card.id} index={index} />
+            ))}
+            <AddButton idList={idList} />
+            {provided.placeholder}
+          </StyledList>
+        </div>
+      )}
+    </Droppable>
   );
 };
 
