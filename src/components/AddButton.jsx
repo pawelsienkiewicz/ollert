@@ -51,7 +51,6 @@ class AddButton extends React.Component {
   handleAddCard = () => {
     const { dispatch, idList } = this.props;
     const { text } = this.state;
-
     if (text) {
       dispatch(addCard(idList, text));
     }
@@ -97,9 +96,9 @@ class AddButton extends React.Component {
           }
         ></Card>
         {isList ? (
-          <button onMouseDown={this.hadleAddList}>Dodaj</button>
+          <button onMouseDown={this.hadleAddList}>Add list</button>
         ) : (
-          <button onMouseDown={this.hadleAddCard}></button>
+          <button onMouseDown={this.handleAddCard}>Add card</button>
         )}
       </div>
     );

@@ -1,4 +1,7 @@
 import ROOTACTIONS from "../actions/index";
+
+var lastId = 10;
+
 const initState = [
   {
     title: "This is sample list",
@@ -31,22 +34,26 @@ const reducerLists = (state = initState, action) => {
     case ROOTACTIONS.ADD_LIST:
       const newList = {
         title: action.payload,
-        id: 15,
+        id: lastId,
         cards: [],
       };
+      lastId++;
       return [...state, newList];
 
     case ROOTACTIONS.ADD_CARD:
       const newCardInList = {
+        id: lastId,
         text: action.payload.text,
-        id: Math.random(),
       };
-      const newState = state.filter((list) => {
+
+      const newState = state.map((list) => {
         if (list.id === action.payload.idList) {
           return {
             ...list,
             cards: [...list.cards, newCardInList],
           };
+        } else {
+          return list;
         }
       });
       return newState;
